@@ -1,0 +1,10 @@
+@media (max-width: 900px) {
+    #hero {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    nav .nav-links {
+        display: none;
+    }
+}

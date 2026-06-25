@@ -17,11 +17,62 @@
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/base.css" />
 		<link rel="stylesheet" href="css/cursor.css" />
+		<link rel="stylesheet" href="css/nav.css" />
+		<link rel="stylesheet" href="css/hero.css" />
+		<link rel="stylesheet" href="css/hero-terminal.css" />
+		<link rel="stylesheet" href="css/responsive.css" />
 	</head>
 	<body>
 		<div class="cursor" id="cursor"></div>
 		<div class="cursor-ring" id="cursor-ring"></div>
 
+		<nav>
+			<div class="nav-logo">Thoth</div>
+			<ul class="nav-links">
+				<li><a href="#how">How it Works</a></li>
+				<li><a href="#privacy">Privacy</a></li>
+				<li><a href="#privacy" class="nav-cta">Get Started</a></li>
+			</ul>
+		</nav>
+
+		<section id="hero">
+			<div class="hero-left">
+				<p class="hero-eyebrow">
+					THOTH &rarr; <u>d</u>wtj &rarr; Djehuty
+					<span style="letter-spacing: 0.04em; font-size: 12px">( pronounced Jeh - hoo - tee )</span>
+				</p>
+				<h1 class="hero-headline">Write like<br /><em>yourself.</em><br />At scale.</h1>
+				<p class="hero-sub">
+					Thoth learns your voice, your knowledge, your publishing patterns; then helps you write original
+					technical content that sounds like you, not an LLM.
+				</p>
+				<div class="hero-actions">
+					<div class="install-strip">
+						<span class="prompt">$</span>
+						<span id="install-cmd">npm install -g thoth-cli</span>
+						<button class="copy-btn">Copy</button>
+					</div>
+					<p class="hero-note">
+						Free forever with local Ollama; no API key required. &nbsp;
+						<a href="#privacy">Your data never leaves your machine.</a>
+					</p>
+				</div>
+			</div>
+
+			<div class="hero-right">
+				<div class="terminal-window">
+					<div class="terminal-bar">
+						<div class="t-dot red"></div>
+						<div class="t-dot yellow"></div>
+						<div class="t-dot green"></div>
+						<span class="t-label">thoth — zsh</span>
+					</div>
+					<div class="terminal-body" id="hero-terminal"></div>
+				</div>
+			</div>
+		</section>
+
+		<script src="js/terminal.js"></script>
 		<script src="js/cursor.js"></script>
 	</body>
 </html>

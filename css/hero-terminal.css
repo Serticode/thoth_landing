@@ -1,0 +1,119 @@
+.hero-right {
+    position: relative;
+    z-index: 1;
+}
+
+.terminal-window {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+        0 32px 80px rgba(0, 0, 0, 0.6),
+        0 0 0 1px var(--border-accent);
+}
+
+.terminal-bar {
+    background: var(--bg-raised);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.t-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.t-dot.red {
+    background: #ff5f57;
+}
+
+.t-dot.yellow {
+    background: #ffbd2e;
+}
+
+.t-dot.green {
+    background: #28ca41;
+}
+
+.t-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: auto;
+    letter-spacing: 0.06em;
+}
+
+.terminal-body {
+    padding: 24px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.9;
+    min-height: 320px;
+}
+
+.t-line {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.t-prompt {
+    color: var(--accent);
+    user-select: none;
+}
+
+.t-cmd {
+    color: var(--text);
+}
+
+.t-output {
+    color: var(--text-dim);
+    padding-left: 22px;
+}
+
+.t-success {
+    color: #4caf82;
+    padding-left: 22px;
+}
+
+.t-section {
+    color: var(--accent-dim);
+    padding-left: 22px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+}
+
+.t-cursor-blink {
+    display: inline-block;
+    width: 7px;
+    height: 13px;
+    background: var(--accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+    border-radius: 1px;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.t-hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.t-hidden.visible {
+    opacity: 1;
+}

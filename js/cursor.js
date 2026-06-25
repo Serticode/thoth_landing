@@ -8,15 +8,13 @@ let mx = 0,
 document.addEventListener("mousemove", (e) => {
     mx = e.clientX;
     my = e.clientY;
-    cursor.style.left = mx + "px";
-    cursor.style.top = my + "px";
+    cursor.style.transform = "translate3d(" + mx + "px, " + my + "px, 0) translate(-50%, -50%)";
 });
 
 function animateRing() {
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
-    ring.style.left = rx + "px";
-    ring.style.top = ry + "px";
+    ring.style.transform = "translate3d(" + rx + "px, " + ry + "px, 0) translate(-50%, -50%)";
     requestAnimationFrame(animateRing);
 }
 animateRing();
