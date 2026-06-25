@@ -20,19 +20,23 @@ let lineIdx = 0;
 
 function renderHeroLine(line) {
     const div = document.createElement("div");
-    div.classList.add("t-line");
     if (line.type === "cmd") {
-        div.innerHTML = `<span class="t-prompt">$</span><span class="t-cmd"> ${line.text}</span>`;
+        div.classList.add("t-line");
+        const prompt = document.createElement("span");
+        prompt.className = "t-prompt";
+        prompt.textContent = "$";
+        const cmd = document.createElement("span");
+        cmd.className = "t-cmd";
+        cmd.textContent = " " + line.text;
+        div.appendChild(prompt);
+        div.appendChild(cmd);
     } else if (line.type === "output") {
-        div.classList.remove("t-line");
         div.classList.add("t-output");
         div.textContent = line.text;
     } else if (line.type === "success") {
-        div.classList.remove("t-line");
         div.classList.add("t-success");
         div.textContent = line.text;
     } else if (line.type === "section") {
-        div.classList.remove("t-line");
         div.classList.add("t-section");
         div.textContent = line.text;
     }
