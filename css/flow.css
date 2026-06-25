@@ -1,0 +1,63 @@
+.flow-section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 60px;
+	align-items: start;
+	margin-top: 80px;
+}
+
+.flow-steps {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+.flow-step {
+	display: flex;
+	gap: 20px;
+	padding: 28px 0;
+	border-bottom: 1px solid var(--border);
+	position: relative;
+	cursor: default;
+}
+
+.flow-step:last-child {
+	border-bottom: none;
+}
+
+.flow-step-num {
+	font-family: var(--font-mono);
+	font-size: 18px;
+	color: var(--accent);
+	width: 24px;
+	flex-shrink: 0;
+	padding-top: 3px;
+}
+
+.flow-step-body {
+	flex: 1;
+}
+
+.flow-step-title {
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--text);
+	margin-bottom: 6px;
+}
+
+.flow-step-desc {
+	font-size: 14px;
+	color: var(--text-dim);
+	line-height: 1.65;
+}
+
+.flow-step-cmd {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	color: var(--accent-dim);
+	margin-top: 12px;
+	background: var(--accent-glow);
+	padding: 12px 12px;
+	border-radius: 4px;
+	display: inline-block;
+}

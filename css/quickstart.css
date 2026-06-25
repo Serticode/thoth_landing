@@ -1,0 +1,59 @@
+.quickstart {
+	position: sticky;
+	top: 80px;
+}
+
+.qs-block {
+	background: var(--bg-card);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	overflow: hidden;
+	margin-bottom: 16px;
+}
+
+.qs-block-head {
+	padding: 10px 16px;
+	background: var(--bg-raised);
+	border-bottom: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.qs-block-label {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	color: var(--text-muted);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.qs-step-badge {
+	font-family: var(--font-mono);
+	font-size: 10px;
+	color: var(--accent);
+	background: var(--accent-glow);
+	border: 1px solid var(--border-accent);
+	border-radius: 2px;
+	padding: 2px 7px;
+}
+
+.qs-code {
+	padding: 16px;
+	font-family: var(--font-mono);
+	font-size: 14px;
+	line-height: 1.8;
+	color: var(--text-dim);
+}
+
+.qs-code .c-accent {
+	color: var(--accent);
+}
+
+.qs-code .c-green {
+	color: #4caf82;
+}
+
+.qs-code .c-dim {
+	color: var(--text-muted);
+}

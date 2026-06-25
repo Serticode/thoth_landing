@@ -1,0 +1,107 @@
+#privacy {
+	padding: 120px 5%;
+	background: var(--bg-raised);
+	position: relative;
+	overflow: hidden;
+}
+
+#privacy::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+}
+
+.privacy-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 80px;
+	align-items: start;
+	margin-top: 60px;
+}
+
+.privacy-pillars {
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+}
+
+.privacy-pillar {
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+}
+
+.pillar-icon {
+	width: 36px;
+	height: 36px;
+	border: 1px solid var(--border-accent);
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 15px;
+	flex-shrink: 0;
+	background: var(--accent-glow);
+}
+
+.pillar-title {
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--text);
+	margin-bottom: 6px;
+}
+
+.pillar-desc {
+	font-size: 14px;
+	color: var(--text-dim);
+	line-height: 1.65;
+	max-width: 42ch;
+}
+
+.pillar-desc code {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: var(--accent);
+}
+
+.provider-row {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-top: 28px;
+}
+
+.provider-badge {
+	font-family: var(--font-mono);
+	font-size: 14px;
+	padding: 5px 12px;
+	border-radius: 3px;
+	border: 1px solid var(--border);
+	color: var(--text-dim);
+	background: var(--bg-card);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.provider-badge .badge-dot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+}
+
+.provider-badge.free {
+	border-color: rgba(68, 201, 58, 0.25);
+}
+
+.provider-badge.free .badge-dot {
+	background: var(--accent);
+}
+
+.provider-badge.paid .badge-dot {
+	background: var(--accent-dim);
+}

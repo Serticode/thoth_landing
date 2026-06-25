@@ -21,6 +21,12 @@
 		<link rel="stylesheet" href="css/hero.css" />
 		<link rel="stylesheet" href="css/hero-terminal.css" />
 		<link rel="stylesheet" href="css/profiles.css" />
+		<link rel="stylesheet" href="css/flow.css" />
+		<link rel="stylesheet" href="css/demo-tabs.css" />
+		<link rel="stylesheet" href="css/privacy.css" />
+		<link rel="stylesheet" href="css/quickstart.css" />
+		<link rel="stylesheet" href="css/footer.css" />
+		<link rel="stylesheet" href="css/animations.css" />
 		<link rel="stylesheet" href="css/responsive.css" />
 	</head>
 	<body>
@@ -51,7 +57,7 @@
 					<div class="install-strip">
 						<span class="prompt">$</span>
 						<span id="install-cmd">npm install -g thoth-cli</span>
-						<button class="copy-btn">Copy</button>
+						<button class="copy-btn" onclick="copyInstall()">Copy</button>
 					</div>
 					<p class="hero-note">
 						Free forever with local Ollama; no API key required. &nbsp;
@@ -76,11 +82,14 @@
 		<div class="section-rule"></div>
 
 		<section id="how">
-			<h2 class="section-title">Three profiles.<br /><em>One voice.</em></h2>
-			<p class="section-subtitle">
-				Thoth builds a model of you in three dimensions. <br />- What you know <br />- How you communicate
-				<br />- What you've published. <br />Then uses that model to generate content that is unmistakably you.
-			</p>
+			<div class="reveal">
+				<h2 class="section-title">Three profiles.<br /><em>One voice.</em></h2>
+				<p class="section-subtitle">
+					Thoth builds a model of you in three dimensions.
+					<br />- What you know <br />- How you communicate <br />- What you've published. <br />Then uses
+					that model to generate content that is unmistakably you.
+				</p>
+			</div>
 
 			<div class="profiles-grid">
 				<div class="profile-card">
@@ -128,9 +137,297 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="flow-section reveal">
+				<div class="flow-steps">
+					<div class="flow-step">
+						<span class="flow-step-num">01</span>
+						<div class="flow-step-body">
+							<h4 class="flow-step-title">Initialize</h4>
+							<p class="flow-step-desc">
+								Creates a local SQLite database at
+								<code>~/.thoth/</code>. No cloud. No account.
+							</p>
+							<span class="flow-step-cmd">$ thoth init</span>
+						</div>
+					</div>
+					<div class="flow-step">
+						<span class="flow-step-num">02</span>
+						<div class="flow-step-body">
+							<h4 class="flow-step-title">Import your sources</h4>
+							<p class="flow-step-desc">
+								Point Thoth at your notes, repos, or articles. It chunks, embeds, and stores locally.
+							</p>
+							<span class="flow-step-cmd">$ thoth import voice ./journals</span>
+						</div>
+					</div>
+					<div class="flow-step">
+						<span class="flow-step-num">03</span>
+						<div class="flow-step-body">
+							<h4 class="flow-step-title">Generate your profiles</h4>
+							<p class="flow-step-desc">
+								Thoth analyses your imports and builds the three identity profiles. Runs once, updates
+								on demand.
+							</p>
+							<span class="flow-step-cmd">$ thoth profile generate</span>
+						</div>
+					</div>
+					<div class="flow-step">
+						<span class="flow-step-num">04</span>
+						<div class="flow-step-body">
+							<h4 class="flow-step-title">Research and draft</h4>
+							<p class="flow-step-desc">
+								Give Thoth a topic. It researches, outlines, and generates an article in your voice — 8
+								to 10 minute reads, split automatically into series if needed.
+							</p>
+							<span class="flow-step-cmd">$ thoth draft --topic "Offline First"</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-terminal">
+					<div class="terminal-window">
+						<div class="terminal-bar">
+							<div class="t-dot red"></div>
+							<div class="t-dot yellow"></div>
+							<div class="t-dot green"></div>
+							<span class="t-label">thoth — demo</span>
+						</div>
+						<div class="demo-tabs">
+							<div class="demo-tab active" onclick="switchTab(0)">init</div>
+							<div class="demo-tab" onclick="switchTab(1)">import</div>
+							<div class="demo-tab" onclick="switchTab(2)">profile</div>
+							<div class="demo-tab" onclick="switchTab(3)">draft</div>
+						</div>
+						<div class="demo-content">
+							<div class="demo-pane active" id="pane-0">
+								<div class="t-line">
+									<span class="t-prompt">$</span><span class="t-cmd">thoth init</span>
+								</div>
+								<div class="t-output">✦ Thoth v1.0.0</div>
+								<div class="t-output">Creating database at ~/.thoth/thoth.db</div>
+								<div class="t-output">Running migrations...</div>
+								<div class="t-success">✓ Database ready</div>
+								<div class="t-success">✓ Vector store initialised</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-output">No AI keys detected.</div>
+								<div class="t-output">Falling back to Ollama (local).</div>
+								<div class="t-success">✓ Ollama connected — llama3.2</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-section">Run: thoth import voice &lt;path&gt;</div>
+							</div>
+
+							<div class="demo-pane" id="pane-1">
+								<div class="t-line">
+									<span class="t-prompt">$</span
+									><span class="t-cmd">thoth import voice ./essays</span>
+								</div>
+								<div class="t-output">Scanning ./essays...</div>
+								<div class="t-output">Found 14 markdown files</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-output">Chunking content (512 tokens, 50 overlap)</div>
+								<div class="t-success">✓ 127 chunks created</div>
+								<div class="t-output">Generating embeddings via Ollama...</div>
+								<div class="t-success">✓ 127 embeddings stored</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-line">
+									<span class="t-prompt">$</span
+									><span class="t-cmd">thoth import knowledge ./architecture</span>
+								</div>
+								<div class="t-output">Found 8 files</div>
+								<div class="t-success">✓ 73 chunks embedded</div>
+							</div>
+
+							<div class="demo-pane" id="pane-2">
+								<div class="t-line">
+									<span class="t-prompt">$</span><span class="t-cmd">thoth profile generate</span>
+								</div>
+								<div class="t-output">Analysing voice sources (127 chunks)...</div>
+								<div class="t-success">✓ Voice profile generated</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-output">&nbsp; Tone cinematic, second-person</div>
+								<div class="t-output">&nbsp; Pacing deliberate, story-first</div>
+								<div class="t-output">&nbsp; Vocabulary technical with metaphor</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-output">Analysing knowledge sources (73 chunks)...</div>
+								<div class="t-success">✓ Knowledge profile generated</div>
+								<div class="t-success">✓ Publication profile generated</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-section">Identity engine ready.</div>
+							</div>
+
+							<div class="demo-pane" id="pane-3">
+								<div class="t-line">
+									<span class="t-prompt">$</span
+									><span class="t-cmd">thoth draft --topic "Offline First Mobile Apps"</span>
+								</div>
+								<div class="t-output">Researching topic...</div>
+								<div class="t-output">Sourcing: architecture blogs, engineering case studies</div>
+								<div class="t-success">✓ Research package built (12 sources)</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-output">Applying voice profile...</div>
+								<div class="t-output">Applying knowledge profile...</div>
+								<div class="t-output">Generating outline → draft...</div>
+								<div class="t-success">✓ Article generated (1,640 words, ~9 min read)</div>
+								<div class="t-output">&nbsp;</div>
+								<div class="t-output">Saved: ./drafts/offline-first-mobile-apps.md</div>
+								<div class="t-section">Run: thoth publish --topic "Offline First Mobile Apps"</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
+
+		<div class="section-rule"></div>
+
+		<section id="privacy">
+			<div class="reveal">
+				<h2 class="section-title"><em>Your data.</em><br />Your machine.</h2>
+				<p class="section-subtitle">
+					Thoth is a CLI tool. <br />Everything — your profiles, embeddings, drafts; lives in a SQLite
+					database on your own filesystem.
+				</p>
+			</div>
+
+			<div class="privacy-grid">
+				<div class="privacy-pillars">
+					<div class="privacy-pillar reveal reveal-delay-1">
+						<div class="pillar-icon">🔒</div>
+						<div class="pillar-body">
+							<h4 class="pillar-title">Local by default</h4>
+							<p class="pillar-desc">
+								All data is stored at
+								<code>~/.thoth/thoth.db</code>. Nothing is sent to Thoth servers; there are none.
+							</p>
+						</div>
+					</div>
+					<div class="privacy-pillar reveal reveal-delay-2">
+						<div class="pillar-icon">🤖</div>
+						<div class="pillar-body">
+							<h4 class="pillar-title">Ollama is the default provider</h4>
+							<p class="pillar-desc">
+								No API key, or cost, or data leaving your network. Runs entirely on your hardware.
+								OpenAI and Gemini are opt in for higher quality.
+							</p>
+						</div>
+					</div>
+					<div class="privacy-pillar reveal reveal-delay-3">
+						<div class="pillar-icon">🔑</div>
+						<div class="pillar-body">
+							<h4 class="pillar-title">You control which provider sees your data</h4>
+							<p class="pillar-desc">
+								If you opt into OpenAI or Gemini, only your embeddings and prompts are sent; never your
+								raw source files.
+							</p>
+						</div>
+					</div>
+					<div class="privacy-pillar reveal reveal-delay-4">
+						<div class="pillar-icon">📦</div>
+						<div class="pillar-body">
+							<h4 class="pillar-title">Open source</h4>
+							<p class="pillar-desc">
+								The full source is on GitHub. Audit what runs. Fork it. Own it entirely.
+							</p>
+						</div>
+					</div>
+
+					<div class="provider-row reveal">
+						<span class="provider-badge free">
+							<span class="badge-dot"></span>
+							Ollama — free
+						</span>
+						<span class="provider-badge paid">
+							<span class="badge-dot"></span>
+							Groq — optional
+						</span>
+						<span class="provider-badge paid">
+							<span class="badge-dot"></span>
+							Gemini — optional
+						</span>
+						<span class="provider-badge paid">
+							<span class="badge-dot"></span>
+							OpenAI — optional
+						</span>
+					</div>
+				</div>
+
+				<div class="quickstart reveal reveal-delay-2">
+					<div class="qs-block">
+						<div class="qs-block-head">
+							<span class="qs-block-label">Install</span>
+							<span class="qs-step-badge">01</span>
+						</div>
+						<div class="qs-code">
+							<span class="c-dim"># Node 18+ required</span><br />
+							<span class="c-accent">npm</span> install -g thoth-cli
+						</div>
+					</div>
+
+					<div class="qs-block">
+						<div class="qs-block-head">
+							<span class="qs-block-label">Local setup (no API key)</span>
+							<span class="qs-step-badge">02</span>
+						</div>
+						<div class="qs-code">
+							<span class="c-dim"># Pull required Ollama models</span><br />
+							<span class="c-accent">ollama</span> pull llama3.2<br />
+							<span class="c-accent">ollama</span> pull nomic-embed-text<br /><br />
+							<span class="c-green">thoth</span> init
+						</div>
+					</div>
+
+					<div class="qs-block">
+						<div class="qs-block-head">
+							<span class="qs-block-label">Import & profile</span>
+							<span class="qs-step-badge">03</span>
+						</div>
+						<div class="qs-code">
+							<span class="c-green">thoth</span> import voice ./notes<br />
+							<span class="c-green">thoth</span> import knowledge ./docs<br />
+							<span class="c-green">thoth</span> profile generate
+						</div>
+					</div>
+
+					<div class="qs-block">
+						<div class="qs-block-head">
+							<span class="qs-block-label">Write your first article</span>
+							<span class="qs-step-badge">04</span>
+						</div>
+						<div class="qs-code">
+							<span class="c-green">thoth</span> draft <span class="c-dim">--topic</span>
+							<span class="c-accent">"BLoC vs Riverpod"</span><br /><br />
+							<span class="c-dim"># Optional: upgrade provider</span><br />
+							<span class="c-dim">export</span> GEMINI_API_KEY=AIza...<br />
+							<span class="c-green">thoth</span> draft <span class="c-dim">--topic</span>
+							<span class="c-accent">"BLoC vs Riverpod"</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="footer-row">
+				<div>
+					<div class="footer-logo">Thoth</div>
+					<div class="footer-sub">Built for engineers who write.</div>
+				</div>
+				<ul class="footer-links">
+					<li><a href="#">Docs</a></li>
+					<li><a href="#">Changelog</a></li>
+					<li><a href="#">Cadence</a></li>
+				</ul>
+			</div>
+			<div class="footer-built">
+				Built by <a href="https://portfolio.serticode.com" target="_blank" rel="noopener">Serticode Inc</a>
+			</div>
+		</footer>
 
 		<script src="js/terminal.js"></script>
 		<script src="js/cursor.js"></script>
+		<script src="js/demoTabs.js"></script>
+		<script src="js/copyInstall.js"></script>
+		<script src="js/scrollReveal.js"></script>
 	</body>
 </html>
