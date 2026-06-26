@@ -56,7 +56,7 @@
 				<div class="hero-actions">
 					<div class="install-strip">
 						<span class="prompt">$</span>
-						<span id="install-cmd">npm install -g thoth-cli</span>
+						<span id="install-cmd">npm install -g thoth</span>
 						<button class="copy-btn">Copy</button>
 					</div>
 					<p class="hero-note">
@@ -158,7 +158,7 @@
 							<p class="flow-step-desc">
 								Point Thoth at your notes, repos, or articles. It chunks, embeds, and stores locally.
 							</p>
-							<span class="flow-step-cmd">$ thoth import voice ./journals</span>
+							<span class="flow-step-cmd">$ thoth import_voice ./journals</span>
 						</div>
 					</div>
 					<div class="flow-step">
@@ -169,7 +169,7 @@
 								Thoth analyses your imports and builds the three identity profiles. Runs once, updates
 								on demand.
 							</p>
-							<span class="flow-step-cmd">$ thoth profile generate</span>
+							<span class="flow-step-cmd">$ thoth generate_profile</span>
 						</div>
 					</div>
 					<div class="flow-step">
@@ -180,7 +180,7 @@
 								Give Thoth a topic. It researches, outlines, and generates an article in your voice — 8
 								to 10 minute reads, split automatically into series if needed.
 							</p>
-							<span class="flow-step-cmd">$ thoth draft --topic "Offline First"</span>
+							<span class="flow-step-cmd">$ thoth generate_article --topic "Offline First"</span>
 						</div>
 					</div>
 				</div>
@@ -214,13 +214,13 @@
 								<div class="t-output">Falling back to Ollama (local).</div>
 								<div class="t-success">✓ Ollama connected — llama3.2</div>
 								<div class="t-output">&nbsp;</div>
-								<div class="t-section">Run: thoth import voice &lt;path&gt;</div>
+								<div class="t-section">Run: thoth import_voice &lt;path&gt;</div>
 							</div>
 
 							<div class="demo-pane" id="pane-1">
 								<div class="t-line">
 									<span class="t-prompt">$</span
-									><span class="t-cmd">thoth import voice ./essays</span>
+									><span class="t-cmd">thoth import_voice ./essays</span>
 								</div>
 								<div class="t-output">Scanning ./essays...</div>
 								<div class="t-output">Found 14 markdown files</div>
@@ -232,7 +232,7 @@
 								<div class="t-output">&nbsp;</div>
 								<div class="t-line">
 									<span class="t-prompt">$</span
-									><span class="t-cmd">thoth import knowledge ./architecture</span>
+									><span class="t-cmd">thoth import_knowledge ./architecture</span>
 								</div>
 								<div class="t-output">Found 8 files</div>
 								<div class="t-success">✓ 73 chunks embedded</div>
@@ -240,7 +240,7 @@
 
 							<div class="demo-pane" id="pane-2">
 								<div class="t-line">
-									<span class="t-prompt">$</span><span class="t-cmd">thoth profile generate</span>
+									<span class="t-prompt">$</span><span class="t-cmd">thoth generate_profile</span>
 								</div>
 								<div class="t-output">Analysing voice sources (127 chunks)...</div>
 								<div class="t-success">✓ Voice profile generated</div>
@@ -259,7 +259,7 @@
 							<div class="demo-pane" id="pane-3">
 								<div class="t-line">
 									<span class="t-prompt">$</span
-									><span class="t-cmd">thoth draft --topic "Offline First Mobile Apps"</span>
+									><span class="t-cmd">thoth generate_article --topic "Offline First Mobile Apps"</span>
 								</div>
 								<div class="t-output">Researching topic...</div>
 								<div class="t-output">Sourcing: architecture blogs, engineering case studies</div>
@@ -271,7 +271,7 @@
 								<div class="t-success">✓ Article generated (1,640 words, ~9 min read)</div>
 								<div class="t-output">&nbsp;</div>
 								<div class="t-output">Saved: ./drafts/offline-first-mobile-apps.md</div>
-								<div class="t-section">Run: thoth publish --topic "Offline First Mobile Apps"</div>
+								<div class="t-section">Run: thoth export_article &lt;article-id&gt; --format html</div>
 							</div>
 						</div>
 					</div>
@@ -349,6 +349,10 @@
 							<span class="badge-dot"></span>
 							OpenAI — optional
 						</span>
+						<span class="provider-badge paid">
+							<span class="badge-dot"></span>
+							Anthropic — optional
+						</span>
 					</div>
 				</div>
 
@@ -360,7 +364,7 @@
 						</div>
 						<div class="qs-code">
 							<span class="c-dim"># Node 18+ required</span><br />
-							<span class="c-accent">npm</span> install -g thoth-cli
+							<span class="c-accent">npm</span> install -g thoth
 						</div>
 					</div>
 
@@ -383,9 +387,9 @@
 							<span class="qs-step-badge">03</span>
 						</div>
 						<div class="qs-code">
-							<span class="c-green">thoth</span> import voice ./notes<br />
-							<span class="c-green">thoth</span> import knowledge ./docs<br />
-							<span class="c-green">thoth</span> profile generate
+							<span class="c-green">thoth</span> import_voice ./notes<br />
+							<span class="c-green">thoth</span> import_knowledge ./docs<br />
+							<span class="c-green">thoth</span> generate_profile
 						</div>
 					</div>
 
@@ -395,11 +399,11 @@
 							<span class="qs-step-badge">04</span>
 						</div>
 						<div class="qs-code">
-							<span class="c-green">thoth</span> draft <span class="c-dim">--topic</span>
+							<span class="c-green">thoth</span> generate_article <span class="c-dim">--topic</span>
 							<span class="c-accent">"BLoC vs Riverpod"</span><br /><br />
-							<span class="c-dim"># Optional: upgrade provider</span><br />
+							<span class="c-dim"># Optional: upgrade provider or set default in thoth.json</span><br />
 							<span class="c-dim">export</span> GEMINI_API_KEY=AIza...<br />
-							<span class="c-green">thoth</span> draft <span class="c-dim">--topic</span>
+							<span class="c-green">thoth</span> generate_article <span class="c-dim">--topic</span>
 							<span class="c-accent">"BLoC vs Riverpod"</span>
 						</div>
 					</div>

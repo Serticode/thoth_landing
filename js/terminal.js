@@ -7,12 +7,12 @@ const heroLines = [
 	{ type: "output", text: "No API key detected. Using Ollama (local)." },
 	{ type: "success", text: "✓  Ollama connected — llama3.2 + nomic-embed-text" },
 	{ type: "output", text: "" },
-	{ type: "cmd", text: "thoth profile status" },
+	{ type: "cmd", text: "thoth profile_status" },
 	{ type: "output", text: "Voice profile      ━━━━━━━━━━━━━━ ready" },
 	{ type: "output", text: "Knowledge profile  ━━━━━━━━━━━━━━ ready" },
 	{ type: "output", text: "Publication profile ━━━━━━━━━━━━━ ready" },
 	{ type: "output", text: "" },
-	{ type: "section", text: 'Identity engine active. Run: thoth draft --topic "..."' },
+	{ type: "section", text: 'Identity engine active. Run: thoth generate_article --topic "..."' },
 ];
 
 const heroTerm = document.getElementById("hero-terminal");
