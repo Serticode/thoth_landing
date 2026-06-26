@@ -2,7 +2,6 @@
 	padding: 120px 5%;
 	background: var(--bg-raised);
 	position: relative;
-	overflow: hidden;
 }
 
 #privacy::before {

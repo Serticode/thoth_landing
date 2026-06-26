@@ -48,7 +48,7 @@
 					THOTH &rarr; <u>d</u>wtj &rarr; Djehuty
 					<span style="letter-spacing: 0.04em; font-size: 12px">( pronounced Jeh - hoo - tee )</span>
 				</p>
-				<h1 class="hero-headline">Write like<br /><em>yourself.</em><br />At scale.</h1>
+				<h1 class="hero-headline">Write like<br /><span class="hero-em">yourself.</span><br />At scale.</h1>
 				<p class="hero-sub">
 					Thoth learns your voice, your knowledge, your publishing patterns; then helps you write original
 					technical content that sounds like you, not an LLM.
@@ -57,7 +57,7 @@
 					<div class="install-strip">
 						<span class="prompt">$</span>
 						<span id="install-cmd">npm install -g thoth-cli</span>
-						<button class="copy-btn" onclick="copyInstall()">Copy</button>
+						<button class="copy-btn">Copy</button>
 					</div>
 					<p class="hero-note">
 						Free forever with local Ollama; no API key required. &nbsp;
@@ -194,10 +194,10 @@
 							<span class="t-label">thoth — demo</span>
 						</div>
 						<div class="demo-tabs">
-							<div class="demo-tab active" onclick="switchTab(0)">init</div>
-							<div class="demo-tab" onclick="switchTab(1)">import</div>
-							<div class="demo-tab" onclick="switchTab(2)">profile</div>
-							<div class="demo-tab" onclick="switchTab(3)">draft</div>
+<div class="demo-tab active" data-tab="0">init</div>
+<div class="demo-tab" data-tab="1">import</div>
+<div class="demo-tab" data-tab="2">profile</div>
+<div class="demo-tab" data-tab="3">draft</div>
 						</div>
 						<div class="demo-content">
 							<div class="demo-pane active" id="pane-0">
@@ -416,7 +416,6 @@
 				<ul class="footer-links">
 					<li><a href="#">Docs</a></li>
 					<li><a href="#">Changelog</a></li>
-					<li><a href="#">Cadence</a></li>
 				</ul>
 			</div>
 			<div class="footer-built">

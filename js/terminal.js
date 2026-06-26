@@ -27,7 +27,7 @@ function renderHeroLine(line) {
         prompt.textContent = "$";
         const cmd = document.createElement("span");
         cmd.className = "t-cmd";
-        cmd.textContent = " " + line.text;
+        cmd.textContent = line.text;
         div.appendChild(prompt);
         div.appendChild(cmd);
     } else if (line.type === "output") {

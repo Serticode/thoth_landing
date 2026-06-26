@@ -6,26 +6,25 @@
 	gap: 5rem;
 	align-items: center;
 	position: relative;
-	overflow: hidden;
 }
 
 .hero-left {
-    position: relative;
-    z-index: 1;
+	position: relative;
+	z-index: 1;
 }
 
 .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 1.75rem;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: var(--accent);
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	margin-bottom: 1.75rem;
 }
 
 .hero-eyebrow u {
-    text-decoration: underline;
-    text-underline-offset: 2px;
+	text-decoration: underline;
+	text-underline-offset: 2px;
 }
 
 .hero-headline {
@@ -36,7 +35,7 @@
 	margin-bottom: 1.75rem;
 }
 
-.hero-headline em {
+.hero-headline .hero-em {
 	font-style: italic;
 	color: var(--accent);
 }
@@ -57,13 +56,13 @@
 
 .install-strip {
 	display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.75rem 1rem;
-    width: fit-content;
+	align-items: center;
+	gap: 0.75rem;
+	background: var(--bg-card);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 0.75rem 1rem;
+	width: fit-content;
 }
 
 .install-strip span {
@@ -83,15 +82,15 @@
 	cursor: pointer;
 	color: var(--text-muted);
 	font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	padding: 0.25rem 0.5rem;
+	border-radius: 3px;
 	transition:
 		color 0.2s,
 		background 0.2s;
-    margin-left: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .copy-btn:hover {
