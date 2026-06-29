@@ -1,6 +1,6 @@
 # Thoth Landing Page
 
-Landing page for [Thoth](https://thoth.serticode.com) — an identity preserving publishing engine for engineers who write.
+Landing page for [Thoth](https://thoth.serticode.com): an identity preserving publishing engine for engineers who write.
 
 ## Tech Stack
 
