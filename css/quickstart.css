@@ -51,7 +51,7 @@
 }
 
 .qs-code .c-green {
-	color: #4caf82;
+	color: var(--success-green);
 }
 
 .qs-code .c-dim {

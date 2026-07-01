@@ -3,10 +3,6 @@
 	top: 80px;
 }
 
-.demo-terminal .terminal-window {
-	box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
-}
-
 .demo-tabs {
 	display: flex;
 	gap: 0;

@@ -33,14 +33,43 @@
 		<div class="cursor" id="cursor"></div>
 		<div class="cursor-ring" id="cursor-ring"></div>
 
-		<nav>
-			<div class="nav-logo">Thoth</div>
-			<ul class="nav-links">
-				<li><a href="#how">How it Works</a></li>
-				<li><a href="#privacy">Privacy</a></li>
-				<li><a href="#privacy" class="nav-cta">Get Started</a></li>
-			</ul>
-		</nav>
+		<header class="nav" id="site-nav">
+			<div class="nav__inner">
+				<div class="nav__left">
+					<a href="index.html" class="nav__logo"><span class="nav__logo-accent">T</span>hoth</a>
+					<nav class="nav__links">
+						<a href="#how" class="nav__link">How it Works</a>
+						<a href="#privacy" class="nav__link">Privacy</a>
+					</nav>
+				</div>
+				<a href="docs.html" class="nav__cta">Docs <span class="nav__cta-arrow">›</span></a>
+			</div>
+		</header>
+
+		<button class="mobile-trigger" id="mobile-trigger" aria-label="Menu">
+			<span class="mobile-trigger__icon"><span></span><span></span><span></span></span>
+		</button>
+		<div class="mobile-scrim" id="mobile-scrim"></div>
+		<div class="mobile-drawer" id="mobile-drawer">
+			<div class="mobile-drawer__header">
+				<span class="mobile-drawer__logo">Thoth</span>
+				<button class="mobile-drawer__close" id="mobile-drawer-close">✕</button>
+			</div>
+			<nav class="mobile-drawer__nav">
+				<a href="index.html" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> Home
+				</a>
+				<a href="#how" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> How it Works
+				</a>
+				<a href="#privacy" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> Privacy
+				</a>
+				<a href="docs.html" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> Docs
+				</a>
+			</nav>
+		</div>
 
 		<section id="hero">
 			<div class="hero-left">
@@ -72,7 +101,7 @@
 						<div class="t-dot red"></div>
 						<div class="t-dot yellow"></div>
 						<div class="t-dot green"></div>
-						<span class="t-label">thoth — zsh</span>
+						<span class="t-label">thoth zsh</span>
 					</div>
 					<div class="terminal-body" id="hero-terminal"></div>
 				</div>
@@ -177,7 +206,7 @@
 						<div class="flow-step-body">
 							<h4 class="flow-step-title">Research and draft</h4>
 							<p class="flow-step-desc">
-								Give Thoth a topic. It researches, outlines, and generates an article in your voice — 8
+								Give Thoth a topic. It researches, outlines, and generates an article in your voice 8
 								to 10 minute reads, split automatically into series if needed.
 							</p>
 							<span class="flow-step-cmd">$ thoth generate_article --topic "Offline First"</span>
@@ -191,13 +220,13 @@
 							<div class="t-dot red"></div>
 							<div class="t-dot yellow"></div>
 							<div class="t-dot green"></div>
-							<span class="t-label">thoth — demo</span>
+							<span class="t-label">thoth demo</span>
 						</div>
 						<div class="demo-tabs">
-<div class="demo-tab active" data-tab="0">init</div>
-<div class="demo-tab" data-tab="1">import</div>
-<div class="demo-tab" data-tab="2">profile</div>
-<div class="demo-tab" data-tab="3">draft</div>
+							<div class="demo-tab active" data-tab="0">init</div>
+							<div class="demo-tab" data-tab="1">import</div>
+							<div class="demo-tab" data-tab="2">profile</div>
+							<div class="demo-tab" data-tab="3">draft</div>
 						</div>
 						<div class="demo-content">
 							<div class="demo-pane active" id="pane-0">
@@ -212,7 +241,7 @@
 								<div class="t-output">&nbsp;</div>
 								<div class="t-output">No AI keys detected.</div>
 								<div class="t-output">Falling back to Ollama (local).</div>
-								<div class="t-success">✓ Ollama connected — llama3.2</div>
+								<div class="t-success">✓ Ollama connected llama3.2</div>
 								<div class="t-output">&nbsp;</div>
 								<div class="t-section">Run: thoth import_voice &lt;path&gt;</div>
 							</div>
@@ -245,8 +274,8 @@
 								<div class="t-output">Analysing voice sources (127 chunks)...</div>
 								<div class="t-success">✓ Voice profile generated</div>
 								<div class="t-output">&nbsp;</div>
-								<div class="t-output">&nbsp; Tone cinematic, second-person</div>
-								<div class="t-output">&nbsp; Pacing deliberate, story-first</div>
+								<div class="t-output">&nbsp; Tone cinematic, second person</div>
+								<div class="t-output">&nbsp; Pacing deliberate, story first</div>
 								<div class="t-output">&nbsp; Vocabulary technical with metaphor</div>
 								<div class="t-output">&nbsp;</div>
 								<div class="t-output">Analysing knowledge sources (73 chunks)...</div>
@@ -259,7 +288,9 @@
 							<div class="demo-pane" id="pane-3">
 								<div class="t-line">
 									<span class="t-prompt">$</span
-									><span class="t-cmd">thoth generate_article --topic "Offline First Mobile Apps"</span>
+									><span class="t-cmd"
+										>thoth generate_article --topic "Offline First Mobile Apps"</span
+									>
 								</div>
 								<div class="t-output">Researching topic...</div>
 								<div class="t-output">Sourcing: architecture blogs, engineering case studies</div>
@@ -285,7 +316,7 @@
 			<div class="reveal">
 				<h2 class="section-title"><em>Your data.</em><br />Your machine.</h2>
 				<p class="section-subtitle">
-					Thoth is a CLI tool. <br />Everything — your profiles, embeddings, drafts; lives in a SQLite
+					Thoth is a CLI tool. <br />Everything your profiles, embeddings, drafts; lives in a SQLite
 					database on your own filesystem.
 				</p>
 			</div>
@@ -335,23 +366,23 @@
 					<div class="provider-row reveal">
 						<span class="provider-badge free">
 							<span class="badge-dot"></span>
-							Ollama — free
+							Ollama free
 						</span>
 						<span class="provider-badge paid">
 							<span class="badge-dot"></span>
-							Groq — optional
+							Groq optional
 						</span>
 						<span class="provider-badge paid">
 							<span class="badge-dot"></span>
-							Gemini — optional
+							Gemini optional
 						</span>
 						<span class="provider-badge paid">
 							<span class="badge-dot"></span>
-							OpenAI — optional
+							OpenAI optional
 						</span>
 						<span class="provider-badge paid">
 							<span class="badge-dot"></span>
-							Anthropic — optional
+							Anthropic optional
 						</span>
 					</div>
 				</div>
@@ -418,7 +449,7 @@
 					<div class="footer-sub">Built for engineers who write.</div>
 				</div>
 				<ul class="footer-links">
-					<li><a href="#">Docs</a></li>
+					<li><a href="docs.html">Docs</a></li>
 					<li><a href="#">Changelog</a></li>
 				</ul>
 			</div>
@@ -432,5 +463,6 @@
 		<script src="js/demoTabs.js"></script>
 		<script src="js/copyInstall.js"></script>
 		<script src="js/scrollReveal.js"></script>
+		<script src="js/mobileDrawer.js"></script>
 	</body>
 </html>

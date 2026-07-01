@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".copy-btn").addEventListener("click", () => {
-        navigator.clipboard.writeText("npm install -g thoth-cli").then(() => {
+        navigator.clipboard.writeText("npm install -g thoth").then(() => {
             const btn = document.querySelector(".copy-btn");
             btn.textContent = "Copied!";
             btn.style.color = "var(--accent)";

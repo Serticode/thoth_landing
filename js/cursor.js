@@ -21,10 +21,10 @@ animateRing();
 
 document.querySelectorAll("a, button, .demo-tab, .profile-card").forEach((el) => {
     el.addEventListener("mouseenter", () => {
-        cursor.style.width = "10px";
-        cursor.style.height = "10px";
-        ring.style.width = "44px";
-        ring.style.height = "44px";
+        cursor.style.width = "8px";
+        cursor.style.height = "8px";
+        ring.style.width = "34px";
+        ring.style.height = "34px";
         ring.style.borderColor = "var(--accent)";
     });
     el.addEventListener("mouseleave", () => {

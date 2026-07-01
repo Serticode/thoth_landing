@@ -11,6 +11,15 @@
 	--border: rgba(237, 233, 226, 0.07);
 	--border-accent: rgba(68, 201, 58, 0.22);
 	--radius: 8px;
+	--success-green: #4caf82;
+	--t-dot-red: #ff5f57;
+	--t-dot-yellow: #ffbd2e;
+	--t-dot-green: #28ca41;
 	--font-mono: "Geist Mono", "Cascadia Code", monospace;
 	--font-body: "Instrument Sans", sans-serif;
+	--ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+	--duration-fast: 150ms;
+	--duration-base: 250ms;
+	--duration-slow: 400ms;
 }

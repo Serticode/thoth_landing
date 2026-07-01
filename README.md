@@ -4,7 +4,7 @@ Landing page for [Thoth](https://thoth.serticode.com): an identity preserving pu
 
 ## Tech Stack
 
-- **HTML** — semantic, accessible markup
-- **CSS** — custom properties, component driven, no frameworks
-- **JavaScript** — vanilla, lightweight interactions
-- **Deploy** — Railway (static site)
+- **HTML** semantic, accessible markup
+- **CSS** custom properties, component driven, no frameworks
+- **JavaScript** vanilla, lightweight interactions
+- **Deploy** Railway (static site)

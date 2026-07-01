@@ -1,11 +1,11 @@
 const heroLines = [
 	{ type: "cmd", text: "thoth init" },
-	{ type: "output", text: "✦ Thoth v1.0.0 — Identity-Preserving Publishing Engine" },
+	{ type: "output", text: "✦ Thoth v1.0.0 Identity Preserving Publishing Engine" },
 	{ type: "output", text: "Initializing local database..." },
 	{ type: "success", text: "✓  Database ready at ~/.thoth/thoth.db" },
 	{ type: "output", text: "" },
 	{ type: "output", text: "No API key detected. Using Ollama (local)." },
-	{ type: "success", text: "✓  Ollama connected — llama3.2 + nomic-embed-text" },
+	{ type: "success", text: "✓  Ollama connected llama3.2 + nomic-embed-text" },
 	{ type: "output", text: "" },
 	{ type: "cmd", text: "thoth profile_status" },
 	{ type: "output", text: "Voice profile      ━━━━━━━━━━━━━━ ready" },

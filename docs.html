@@ -1,0 +1,1199 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Thoth CLI Reference v1.0.0</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap"
+			rel="stylesheet" />
+
+		<link rel="stylesheet" href="css/variables.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/nav.css" />
+		<link rel="stylesheet" href="css/footer.css" />
+		<link rel="stylesheet" href="css/docs.css" />
+		<link rel="stylesheet" href="css/animations.css" />
+	</head>
+	<body>
+		<div class="cursor" id="cursor"></div>
+		<div class="cursor-ring" id="cursor-ring"></div>
+
+		<header class="nav" id="site-nav">
+			<div class="nav__inner">
+				<div class="nav__left">
+					<a href="index.html" class="nav__logo"><span class="nav__logo-accent">T</span>hoth</a>
+					<nav class="nav__links">
+						<a href="index.html" class="nav__link">Landing</a>
+						<a href="docs.html" class="nav__link active">Docs</a>
+					</nav>
+				</div>
+				<a href="index.html" class="nav__cta">Get Started <span class="nav__cta-arrow">›</span></a>
+			</div>
+		</header>
+
+		<button class="mobile-trigger" id="mobile-trigger" aria-label="Menu">
+			<span class="mobile-trigger__icon"><span></span><span></span><span></span></span>
+		</button>
+		<div class="mobile-scrim" id="mobile-scrim"></div>
+		<div class="mobile-drawer" id="mobile-drawer">
+			<div class="mobile-drawer__header">
+				<span class="mobile-drawer__logo">Thoth</span>
+				<button class="mobile-drawer__close" id="mobile-drawer-close">✕</button>
+			</div>
+			<nav class="mobile-drawer__nav">
+				<a href="index.html" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> Home
+				</a>
+				<a href="index.html#how" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> How it Works
+				</a>
+				<a href="index.html#privacy" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> Privacy
+				</a>
+				<a href="docs.html" class="mobile-drawer__link">
+					<span class="mobile-drawer__link-marker"></span> Docs
+				</a>
+			</nav>
+		</div>
+
+		<div class="docs-layout">
+			<aside class="docs-sidebar" id="sidebar">
+				<nav class="sidebar-nav">
+					<a href="#overview" class="sidebar-link">Overview</a>
+					<a href="#installation" class="sidebar-link">Installation</a>
+					<a href="#global-options" class="sidebar-link">Global Options</a>
+					<a href="#configuration" class="sidebar-link">Configuration</a>
+					<a href="#ai-providers" class="sidebar-link">AI Providers</a>
+					<span class="sidebar-heading">Commands</span>
+					<a href="#cmd-init" class="sidebar-link sidebar-link--sub">init</a>
+					<a href="#cmd-import-voice" class="sidebar-link sidebar-link--sub">import_voice</a>
+					<a href="#cmd-import-knowledge" class="sidebar-link sidebar-link--sub">import_knowledge</a>
+					<a href="#cmd-import-publications" class="sidebar-link sidebar-link--sub">import_publications</a>
+					<a href="#cmd-generate-profile" class="sidebar-link sidebar-link--sub">generate_profile</a>
+					<a href="#cmd-profile-status" class="sidebar-link sidebar-link--sub">profile_status</a>
+					<a href="#cmd-research" class="sidebar-link sidebar-link--sub">research</a>
+					<a href="#cmd-generate-article" class="sidebar-link sidebar-link--sub">generate_article</a>
+					<a href="#cmd-list-articles" class="sidebar-link sidebar-link--sub">list_articles</a>
+					<a href="#cmd-get-article" class="sidebar-link sidebar-link--sub">get_article</a>
+					<a href="#cmd-create-series" class="sidebar-link sidebar-link--sub">create_series</a>
+					<a href="#cmd-list-series" class="sidebar-link sidebar-link--sub">list_series</a>
+					<a href="#cmd-add-to-series" class="sidebar-link sidebar-link--sub">add_to_series</a>
+					<a href="#cmd-get-series" class="sidebar-link sidebar-link--sub">get_series</a>
+					<a href="#cmd-export-article" class="sidebar-link sidebar-link--sub">export_article</a>
+					<a href="#cmd-export-series" class="sidebar-link sidebar-link--sub">export_series</a>
+					<span class="sidebar-heading">Reference</span>
+					<a href="#workflows" class="sidebar-link">Workflows</a>
+					<a href="#domain-entities" class="sidebar-link">Domain Entities</a>
+					<a href="#system-details" class="sidebar-link">System Details</a>
+				</nav>
+			</aside>
+
+			<main class="docs-content">
+				<section id="overview" class="reveal">
+					<h1 class="doc-title">CLI Reference <span class="doc-version">v1.0.0</span></h1>
+					<p class="doc-subtitle">
+						Identity Preserving Publishing Engine generate articles and series in your authentic
+						voice using AI.
+					</p>
+					<div class="doc-install">
+						<span class="doc-install-prompt">$</span>
+						<span class="doc-install-cmd">npx thoth &lt;command&gt; [options]</span>
+					</div>
+				</section>
+				<div class="section-rule"></div>
+
+				<section id="installation" class="reveal">
+					<h2 class="doc-section-title">Installation</h2>
+					<p class="doc-section-desc">
+						<strong>Prerequisites:</strong> Node.js 22+ and a C++ compiler (required by
+						<code>better-sqlite3</code> and <code>sqlite-vec</code> native modules). On macOS, Xcode Command
+						Line Tools (<code>xcode-select --install</code>) is sufficient.
+					</p>
+					<pre class="doc-code-block"><code>npm install -g thoth</code></pre>
+					<p class="doc-section-desc">Or run without installing:</p>
+					<pre class="doc-code-block"><code>npx thoth init</code></pre>
+					<h3 class="doc-subsection-title">AI Provider Setup (optional)</h3>
+					<p class="doc-section-desc">
+						Set at least one API key environment variable to use cloud AI. Add these to your shell profile
+						(<code>~/.zshrc</code> or <code>~/.bashrc</code>) so they persist across sessions. If no keys
+						are set, Thoth falls back to local Ollama.
+					</p>
+					<pre
+						class="doc-code-block"><code><span class="dc-dim">export OPENAI_API_KEY</span>=sk-...     <span class="dc-comment">// OpenAI </span>
+<span class="dc-dim">export ANTHROPIC_API_KEY</span>=sk-...  <span class="dc-comment">// Anthropic Claude</span>
+<span class="dc-dim">export GEMINI_API_KEY</span>=...        <span class="dc-comment">// Gemini (free tier available)</span>
+<span class="dc-dim">export GROQ_API_KEY</span>=...          <span class="dc-comment">// Groq (fast inference)</span></code></pre>
+					<p class="doc-section-desc">
+						To run entirely offline with no API keys,
+						<a href="https://ollama.com" target="_blank" rel="noopener">install Ollama</a> and pass
+						<code>--local</code>:
+					</p>
+					<pre class="doc-code-block"><code>thoth --local init</code></pre>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="global-options" class="reveal">
+					<h2 class="doc-section-title">Global Options</h2>
+					<p class="doc-section-desc">
+						Global options apply to every command. <code>--local</code> and <code>--provider</code> can also
+						be set in <code>thoth.json</code> or environment variables.
+					</p>
+					<div class="doc-table-wrap">
+						<table class="doc-table">
+							<thead>
+								<tr>
+									<th>Option</th>
+									<th>Env Var</th>
+									<th>Example</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>--local</code></td>
+									<td><code>THOTH_LOCAL=true</code></td>
+									<td><code>thoth --local init</code></td>
+									<td>Use only local AI (Ollama). No data sent to external providers</td>
+								</tr>
+								<tr>
+									<td><code>--provider &lt;name&gt;</code></td>
+									<td><code>THOTH_PROVIDER</code></td>
+									<td><code>thoth --provider anthropic research "Flutter"</code></td>
+									<td>AI provider: <code>openai</code>, <code>groq</code>, <code>gemini</code>, <code>anthropic</code>, <code>ollama</code></td>
+								</tr>
+								<tr>
+									<td><code>-V, --version</code></td>
+									<td></td>
+									<td><code>thoth --version</code></td>
+									<td>Print version (1.0.0)</td>
+								</tr>
+								<tr>
+									<td><code>--help</code></td>
+									<td></td>
+									<td><code>thoth --help</code><br><code>thoth import_voice --help</code></td>
+									<td>Show help. Use <code>thoth &lt;command&gt; --help</code> for any command</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="configuration" class="reveal">
+					<h2 class="doc-section-title">Configuration</h2>
+					<p class="doc-section-desc">Thoth reads config from two locations (merged in order, later wins):</p>
+					<ol class="doc-list">
+						<li>
+							<strong>Project config</strong> <code>./thoth.json</code> (current working
+							directory)
+						</li>
+						<li><strong>User config</strong> <code>~/.thoth/thoth.json</code> (home directory)</li>
+					</ol>
+
+					<h3 class="doc-subsection-title">Schema</h3>
+					<pre class="doc-code-block"><code>{
+  <span class="dc-dim">"provider"</span>: <span class="dc-str">"openai"</span>,        <span class="dc-comment">// Default AI provider</span>
+  <span class="dc-dim">"chatModel"</span>: <span class="dc-str">"gpt-4o-mini"</span>,  <span class="dc-comment">// Override chat model</span>
+  <span class="dc-dim">"embeddingModel"</span>: <span class="dc-str">"text-embedding-3-small"</span>, <span class="dc-comment">// Override embedding model</span>
+  <span class="dc-dim">"local"</span>: <span class="dc-kw">false</span>,              <span class="dc-comment">// Force local only mode</span>
+  <span class="dc-dim">"dbPath"</span>: <span class="dc-str">"/path/to/custom.db"</span>, <span class="dc-comment">// Custom database location</span>
+  <span class="dc-dim">"logLevel"</span>: <span class="dc-str">"error"</span>,         <span class="dc-comment">// Logging level (error, warn, info, debug)</span>
+  <span class="dc-dim">"export"</span>: {
+    <span class="dc-dim">"format"</span>: <span class="dc-str">"md"</span>,            <span class="dc-comment">// Default export format</span>
+    <span class="dc-dim">"outputDir"</span>: <span class="dc-str">"./out"</span>       <span class="dc-comment">// Default export directory</span>
+  }
+}</code></pre>
+
+					<h3 class="doc-subsection-title">Environment Variables</h3>
+					<div class="doc-table-wrap">
+						<table class="doc-table">
+							<thead>
+								<tr>
+									<th>Variable</th>
+									<th>Overrides</th>
+									<th>Default</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>THOTH_LOCAL=true</code></td>
+									<td><code>local</code> config field</td>
+									<td><code>false</code></td>
+								</tr>
+								<tr>
+									<td><code>THOTH_PROVIDER</code></td>
+									<td><code>provider</code> config field</td>
+									<td>auto detect</td>
+								</tr>
+								<tr>
+									<td><code>THOTH_DB_PATH</code></td>
+									<td><code>dbPath</code> config field</td>
+									<td><code>~/.thoth/thoth.db</code></td>
+								</tr>
+								<tr>
+									<td><code>THOTH_CHAT_MODEL</code></td>
+									<td><code>chatModel</code> config field</td>
+									<td>provider dependent</td>
+								</tr>
+								<tr>
+									<td><code>THOTH_EMBEDDING_MODEL</code></td>
+									<td><code>embeddingModel</code> config field</td>
+									<td>provider dependent</td>
+								</tr>
+								<tr>
+									<td><code>LOG_LEVEL</code></td>
+									<td><code>logLevel</code> config field</td>
+									<td><code>info</code></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3 class="doc-subsection-title">Config Merge Priority</h3>
+					<p class="doc-section-desc">
+						<strong class="doc-em">CLI flag &gt; Environment variable &gt; Config file &gt; Default</strong>
+					</p>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="ai-providers" class="reveal">
+					<h2 class="doc-section-title">AI Providers</h2>
+					<p class="doc-section-desc">
+						Thoth supports five AI providers. Each has its own API key env var and default model. Providers
+						are tried in priority order; if one fails, the next is attempted (3 retries with exponential
+						backoff per provider).
+					</p>
+
+					<h3 class="doc-subsection-title">Provider Chain</h3>
+					<p class="doc-section-desc">
+						Providers are tried in quality priority order. Each gets 3 retries with exponential backoff
+						before falling through to the next. Ollama is always last as the local fallback.
+					</p>
+					<pre class="doc-code-block"><code>OpenAI → Groq → Gemini → Anthropic → Ollama
+	  <span class="dc-dim">(tried in order; Ollama is the always-available last resort)</span></code></pre>
+
+					<h3 class="doc-subsection-title">Provider Reference</h3>
+					<div class="doc-table-wrap">
+						<table class="doc-table">
+							<thead>
+								<tr>
+									<th>Provider</th>
+									<th>Env Var</th>
+									<th>Default Chat Model</th>
+									<th>Default Embedding Model</th>
+									<th>Embeddings</th>
+									<th>Kind</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>OpenAI</strong></td>
+									<td><code>OPENAI_API_KEY</code></td>
+									<td><code>gpt-4o-mini</code></td>
+									<td><code>text-embedding-3-small</code></td>
+									<td>Yes</td>
+									<td>openai compatible</td>
+								</tr>
+								<tr>
+									<td><strong>Groq</strong></td>
+									<td><code>GROQ_API_KEY</code></td>
+									<td><code>mixtral-8x7b-32768</code></td>
+									<td></td>
+									<td>No</td>
+									<td>openai compatible</td>
+								</tr>
+								<tr>
+									<td><strong>Gemini</strong></td>
+									<td><code>GEMINI_API_KEY</code></td>
+									<td><code>gemini-1.5-flash</code></td>
+									<td><code>text-embedding-004</code></td>
+									<td>Yes</td>
+									<td>openai compatible</td>
+								</tr>
+								<tr>
+									<td><strong>Anthropic</strong></td>
+									<td><code>ANTHROPIC_API_KEY</code></td>
+									<td><code>claude-sonnet-4-20250514</code></td>
+									<td></td>
+									<td>No</td>
+									<td>anthropic</td>
+								</tr>
+								<tr>
+									<td><strong>Ollama</strong></td>
+									<td>(none, localhost)</td>
+									<td><code>qwen2.5:7b</code></td>
+									<td><code>nomic-embed-text</code></td>
+									<td>Yes</td>
+									<td>openai compatible</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3 class="doc-subsection-title">Custom Models</h3>
+					<p class="doc-section-desc">Override any provider's default model:</p>
+					<pre
+						class="doc-code-block"><code><span class="dc-dim">THOTH_CHAT_MODEL=gpt-4o</span> thoth generate_article --topic "My Topic"
+<span class="dc-dim">THOTH_EMBEDDING_MODEL=text-embedding-ada-002</span> thoth import_knowledge ./docs</code></pre>
+
+					<h3 class="doc-subsection-title">Ollama Configuration</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-dim">OLLAMA_BASE_URL</span>=http://localhost:11434/v1  <span class="dc-comment">// default</span>
+<span class="dc-dim">OLLAMA_CHAT_MODEL</span>=qwen2.5:7b
+<span class="dc-dim">OLLAMA_EMBEDDING_MODEL</span>=nomic-embed-text</code></pre>
+
+					<h3 class="doc-subsection-title">Privacy</h3>
+					<p class="doc-section-desc">
+						Pass <code>--local</code> (or set <code>THOTH_LOCAL=true</code> or <code>"local": true</code> in
+						config) to restrict Thoth to Ollama only. No source content leaves your machine.
+					</p>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="commands" class="reveal">
+					<h2 class="doc-section-title">Commands</h2>
+
+					<div id="cmd-init" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth init</h3>
+						<p class="doc-cmd-desc">Initialize Thoth create the SQLite database and run migrations.</p>
+						<pre class="doc-code-block"><code>thoth init [options]</code></pre>
+						<p class="doc-section-desc">
+							Creates the database file at <code>~/.thoth/thoth.db</code> (or <code>THOTH_DB_PATH</code>)
+							and ensures all tables exist. Safe to run multiple times existing data is preserved.
+						</p>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-prompt">$</div>
+								<div class="dt-cmd">thoth init</div>
+								<div class="dt-output">Thoth initialized.</div>
+								<div class="dt-output">Database: ~/.thoth/thoth.db</div>
+								<div class="dt-output">Sources: 0 voice, 0 knowledge, 0 publication</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-output dim">Privacy notice:</div>
+								<div class="dt-output dim">Thoth sends source content to external AI providers</div>
+								<div class="dt-output dim">for profile generation and embedding.</div>
+								<div class="dt-output dim">Run with --local to use only local AI (Ollama).</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-section">Next steps: thoth import_voice &lt;path&gt; ...</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>
+								If the database directory cannot be created or migrations fail, Thoth exits with code 1.
+							</p>
+						</div>
+					</div>
+
+					<div id="cmd-import-voice" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth import_voice</h3>
+						<p class="doc-cmd-desc">
+							Import voice sources journals, essays, blog posts, personal writing.
+						</p>
+						<pre class="doc-code-block"><code>thoth import_voice &lt;path&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>path</code></td>
+										<td>Yes</td>
+										<td>File or directory path to import</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="doc-section-desc">
+							Reads text files from the given path, chunks them, imports each chunk as a "voice" source,
+							stores a content checksum to prevent duplicates, then generates vector embeddings for
+							semantic search.
+						</p>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-output">Importing voice sources from: ./my-journal/</div>
+								<div class="dt-output">Imported 24 chunks.</div>
+								<div class="dt-output">Generating embeddings...</div>
+								<div class="dt-output">Embedding: [████████████████████] 100% | 24/24</div>
+								<div class="dt-success">Embeddings complete.</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-section">Import complete. Run `thoth generate_profile`</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>Path does not exist: <code>ENOENT: no such file or directory</code></p>
+							<p>Embedding failure: nonfatal, logs warning, retry by rerunning</p>
+							<p>Duplicate content: silently skipped (checksum match)</p>
+						</div>
+					</div>
+
+					<div id="cmd-import-knowledge" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth import_knowledge</h3>
+						<p class="doc-cmd-desc">
+							Import knowledge sources technical notes, documentation, repositories.
+						</p>
+						<pre class="doc-code-block"><code>thoth import_knowledge &lt;path&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>path</code></td>
+										<td>Yes</td>
+										<td>File or directory path to import</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="doc-section-desc">
+							Same behavior as <code>import_voice</code> but sources are tagged as type
+							<code>knowledge</code>. Used for research retrieval and profile generation.
+						</p>
+					</div>
+
+					<div id="cmd-import-publications" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth import_publications</h3>
+						<p class="doc-cmd-desc">
+							Import publication sources existing articles, series, published work.
+						</p>
+						<pre class="doc-code-block"><code>thoth import_publications &lt;path&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>path</code></td>
+										<td>Yes</td>
+										<td>File or directory path to import</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="doc-section-desc">
+							Same behavior as <code>import_voice</code> but sources are tagged as type
+							<code>publication</code>. Used for publication profile (themes, series structure).
+						</p>
+					</div>
+
+					<div id="cmd-generate-profile" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth generate_profile</h3>
+						<p class="doc-cmd-desc">Generate identity profiles from imported sources.</p>
+						<pre class="doc-code-block"><code>thoth generate_profile [options]</code></pre>
+						<p class="doc-section-desc">
+							Analyzes all imported sources across the three categories and generates AI derived profiles:
+						</p>
+						<ul class="doc-list">
+							<li>
+								<strong>Voice profile</strong> tone, pacing, storytelling patterns, vocabulary,
+								sentence structure, transitions, humor, reader engagement
+							</li>
+							<li><strong>Knowledge profile</strong> domains of expertise, topics, summary</li>
+							<li>
+								<strong>Publication profile</strong> themes, series structure, publication summary
+							</li>
+						</ul>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-output">Generating identity profiles...</div>
+								<div class="dt-output">Generating voice profile...</div>
+								<div class="dt-success">Voice profile: vp_abc123def</div>
+								<div class="dt-output">Summary: Analytical yet approachable...</div>
+								<div class="dt-output">Generating knowledge profile...</div>
+								<div class="dt-success">Knowledge profile: kp_def456ghi</div>
+								<div class="dt-output">Domains: machine learning, distributed systems</div>
+								<div class="dt-success">Publication profile: pp_789ghi012</div>
+								<div class="dt-section">Identity profiles generated successfully.</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>No sources imported: exits with code 1</p>
+							<p>Profile generation failure for a type: logs error, continues with remaining types</p>
+						</div>
+					</div>
+
+					<div id="cmd-profile-status" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth profile_status</h3>
+						<p class="doc-cmd-desc">Show profile generation status and source counts.</p>
+						<pre class="doc-code-block"><code>thoth profile_status [options]</code></pre>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-section">Thoth Status</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-output">Sources:</div>
+								<div class="dt-output">Voice: 24 chunks</div>
+								<div class="dt-output">Knowledge: 15 chunks</div>
+								<div class="dt-output">Publications: 8 chunks</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-output">Profiles:</div>
+								<div class="dt-success">Voice: [ready] Analytical yet approachable...</div>
+								<div class="dt-success">
+									Knowledge: [ready] machine learning, distributed systems...
+								</div>
+								<div class="dt-output">Publication: [missing] Not generated</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="cmd-research" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth research</h3>
+						<p class="doc-cmd-desc">Research a topic using imported knowledge sources.</p>
+						<pre class="doc-code-block"><code>thoth research &lt;topic&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>topic</code></td>
+										<td>Yes</td>
+										<td>Topic to research</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="doc-section-desc">
+							Performs semantic search over imported knowledge sources, retrieving the most relevant
+							chunks by embedding similarity, and generates a structured research note with inline
+							citations.
+						</p>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-output">Researching: "Vector search performance optimization"</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-output">Distributed vector search systems face three primary</div>
+								<div class="dt-output">bottlenecks: index build latency, query throughput under</div>
+								<div class="dt-output">recall constraints, and memory bandwidth...</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-output">Sources cited: 4</div>
+								<div class="dt-section">Research ID: rn_abc123</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="cmd-generate-article" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth generate_article</h3>
+						<p class="doc-cmd-desc">Generate an article in your authentic voice.</p>
+						<pre
+							class="doc-code-block"><code>thoth generate_article --topic &lt;topic&gt; [--research &lt;id&gt;]
+thoth generate_article --research &lt;id&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Option</th>
+										<th>Required?</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>-t, --topic &lt;topic&gt;</code></td>
+										<td>Yes (if no <code>--research</code>)</td>
+										<td>Topic to write about</td>
+									</tr>
+									<tr>
+										<td><code>-r, --research &lt;id&gt;</code></td>
+										<td>Yes (if no <code>--topic</code>)</td>
+										<td>Research note ID to use as source</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="doc-section-desc">
+							Generates an article by combining your voice profile with optional research context.
+						</p>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-output">Generating article...</div>
+								<div class="dt-output">Topic: Vector Search Performance Optimization</div>
+								<div class="dt-output">&nbsp;</div>
+								<div class="dt-success">Title: Optimizing Vector Search at Scale</div>
+								<div class="dt-output">Words: 1850</div>
+								<div class="dt-section">ID: art_def456</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>No topic or research ID: exits with code 1</p>
+							<p>Research ID not found: <code>Research note not found</code></p>
+						</div>
+					</div>
+
+					<div id="cmd-list-articles" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth list_articles</h3>
+						<p class="doc-cmd-desc">List all generated articles.</p>
+						<pre class="doc-code-block"><code>thoth list_articles [options]</code></pre>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-section">Articles:</div>
+								<div class="dt-output">art_def45 Optimizing Vector Search at Scale (1850 words)</div>
+								<div class="dt-output">art_78901 Building a Personal Knowledge Base (2200 words)</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Empty state</span>
+							<p><code>No articles generated yet. Run thoth generate_article --topic "..."</code></p>
+						</div>
+					</div>
+
+					<div id="cmd-get-article" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth get_article</h3>
+						<p class="doc-cmd-desc">Show an article by ID.</p>
+						<pre class="doc-code-block"><code>thoth get_article &lt;id&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>id</code></td>
+										<td>Yes</td>
+										<td>Article ID</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-output">Title: Optimizing Vector Search at Scale</div>
+								<div class="dt-output">Words: 1850</div>
+								<div class="dt-output">Status: draft</div>
+								<div class="dt-section">Created: 4/15/2026, 2:30:00 PM</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>Article not found: <code>Article not found: art_badid</code></p>
+						</div>
+					</div>
+
+					<div id="cmd-create-series" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth create_series</h3>
+						<p class="doc-cmd-desc">Create a new series to group articles.</p>
+						<pre
+							class="doc-code-block"><code>thoth create_series &lt;name&gt; [--description &lt;text&gt;]</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg/Option</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>name</code></td>
+										<td>Yes</td>
+										<td>Series name</td>
+									</tr>
+									<tr>
+										<td><code>-d, --description &lt;text&gt;</code></td>
+										<td>No</td>
+										<td>Series description</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-success">Series created: Performance Engineering</div>
+								<div class="dt-section">ID: ser_abc123</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="cmd-list-series" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth list_series</h3>
+						<p class="doc-cmd-desc">List all series.</p>
+						<pre class="doc-code-block"><code>thoth list_series [options]</code></pre>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-section">Series:</div>
+								<div class="dt-output">ser_abc12 Performance Engineering (3 articles)</div>
+								<div class="dt-output">ser_def45 Distributed Systems (1 article)</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Empty state</span>
+							<p><code>No series created yet. Run thoth create_series &lt;name&gt;</code></p>
+						</div>
+					</div>
+
+					<div id="cmd-add-to-series" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth add_to_series</h3>
+						<p class="doc-cmd-desc">Add an article to a series.</p>
+						<pre
+							class="doc-code-block"><code>thoth add_to_series &lt;series-id&gt; &lt;article-id&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>series-id</code></td>
+										<td>Yes</td>
+										<td>Series ID</td>
+									</tr>
+									<tr>
+										<td><code>article-id</code></td>
+										<td>Yes</td>
+										<td>Article ID</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-success">Article art_def45 added to series ser_abc12</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>Series not found: <code>Series not found</code></p>
+							<p>Article not found: <code>Article not found</code></p>
+							<p>Article already in series: silently ignored (idempotent)</p>
+						</div>
+					</div>
+
+					<div id="cmd-get-series" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth get_series</h3>
+						<p class="doc-cmd-desc">Show series details, including all articles.</p>
+						<pre class="doc-code-block"><code>thoth get_series &lt;id&gt;</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg</th>
+										<th>Required</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>id</code></td>
+										<td>Yes</td>
+										<td>Series ID</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-output">Series: Performance Engineering</div>
+								<div class="dt-output">Description: Practical guides to perf analysis</div>
+								<div class="dt-output">Created: 4/15/2026, 3:00:00 PM</div>
+								<div class="dt-section">Articles: 2</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>Series not found: <code>Series not found: ser_badid</code></p>
+						</div>
+					</div>
+
+					<div id="cmd-export-article" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth export_article</h3>
+						<p class="doc-cmd-desc">Export an article to a file.</p>
+						<pre
+							class="doc-code-block"><code>thoth export_article &lt;id&gt; [--format &lt;format&gt;] [--output &lt;dir&gt;]</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg/Option</th>
+										<th>Required</th>
+										<th>Description</th>
+										<th>Default</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>id</code></td>
+										<td>Yes</td>
+										<td>Article ID</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code>-f, --format &lt;format&gt;</code></td>
+										<td>No</td>
+										<td>Output format: <code>md</code>, <code>html</code>, <code>txt</code></td>
+										<td><code>md</code></td>
+									</tr>
+									<tr>
+										<td><code>-o, --output &lt;path&gt;</code></td>
+										<td>No</td>
+										<td>Output directory</td>
+										<td><code>~/Documents/Thoth/singles</code></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-success">[ok] Article exported.</div>
+								<div class="dt-output">Title optimizing-vector-search-at-scale</div>
+								<div class="dt-output">Format html</div>
+								<div class="dt-section">
+									Path /Users/you/Documents/Thoth/singles/optimizing-vector-search-at-scale.html
+								</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>Article not found: <code>Article not found: art_badid</code></p>
+							<p>Invalid format: <code>Invalid format. Choose one of: md, html, txt</code></p>
+						</div>
+					</div>
+
+					<div id="cmd-export-series" class="doc-command">
+						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth export_series</h3>
+						<p class="doc-cmd-desc">Export a full series to a file.</p>
+						<pre
+							class="doc-code-block"><code>thoth export_series &lt;id&gt; [--format &lt;format&gt;] [--output &lt;dir&gt;]</code></pre>
+						<div class="doc-table-wrap">
+							<table class="doc-table">
+								<thead>
+									<tr>
+										<th>Arg/Option</th>
+										<th>Required</th>
+										<th>Description</th>
+										<th>Default</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>id</code></td>
+										<td>Yes</td>
+										<td>Series ID</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><code>-f, --format &lt;format&gt;</code></td>
+										<td>No</td>
+										<td>Output format: <code>md</code>, <code>html</code>, <code>rss</code></td>
+										<td><code>md</code></td>
+									</tr>
+									<tr>
+										<td><code>-o, --output &lt;path&gt;</code></td>
+										<td>No</td>
+										<td>Output directory</td>
+										<td><code>~/Documents/Thoth/series</code></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="doc-terminal-sample">
+							<div class="doc-terminal-bar">
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-dot"></span>
+								<span class="doc-terminal-label">output</span>
+							</div>
+							<div class="doc-terminal-body">
+								<div class="dt-success">[ok] Series exported.</div>
+								<div class="dt-output">Title performance-engineering</div>
+								<div class="dt-output">Format html</div>
+								<div class="dt-section">
+									Path /Users/you/Documents/Thoth/series/performance-engineering.html
+								</div>
+							</div>
+						</div>
+						<div class="doc-errors">
+							<span class="doc-errors-label">Errors</span>
+							<p>Series not found: <code>Series not found: ser_badid</code></p>
+							<p>Invalid format: <code>Invalid format. Choose one of: md, html, rss</code></p>
+						</div>
+					</div>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="workflows" class="reveal">
+					<h2 class="doc-section-title">End to End Workflow</h2>
+					<pre class="doc-code-block"><code> 1. Initialize           thoth init
+ 2. Import voice         thoth import_voice ./journals/
+ 3. Import knowledge     thoth import_knowledge ./notes/
+ 4. Import publications  thoth import_publications ./articles/
+ 5. Generate profiles    thoth generate_profile
+ 6. Check status         thoth profile_status
+ 7. Research a topic     thoth research "Distributed Systems Design"
+ 8. Write article        thoth generate_article --topic "..." --research rn_abc123
+ 9. Create series        thoth create_series "Distributed Systems"
+10. Add to series        thoth add_to_series ser_abc123 art_def456
+11. Export article       thoth export_article art_def456 --format html
+12. Export series        thoth export_series ser_abc123 --format rss</code></pre>
+
+					<h3 class="doc-subsection-title">Minimal Workflow (local only, no API keys)</h3>
+					<pre class="doc-code-block"><code>thoth init
+thoth import_voice ./my-writing/
+thoth generate_profile
+thoth generate_article --topic "My First Post"
+thoth export_article art_xxx --format html --output ./out</code></pre>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="domain-entities" class="reveal">
+					<h2 class="doc-section-title">Domain Entity Reference</h2>
+
+					<h3 class="doc-subsection-title">SourceReference</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">SourceReference</span> {
+  <span class="dc-dim">id</span>: string;         <span class="dc-comment">// unique ID</span>
+  <span class="dc-dim">type</span>: <span class="dc-str">"voice"</span> | <span class="dc-str">"knowledge"</span> | <span class="dc-str">"publication"</span>;
+  <span class="dc-dim">sourcePath</span>: string; <span class="dc-comment">// original file path</span>
+  <span class="dc-dim">content</span>: string;    <span class="dc-comment">// chunked text content</span>
+  <span class="dc-dim">checksum</span>: string;   <span class="dc-comment">// content hash (dedup)</span>
+  <span class="dc-dim">chunkIndex</span>: number; <span class="dc-comment">// position within source file</span>
+  <span class="dc-dim">createdAt</span>: Date;
+}</code></pre>
+
+					<h3 class="doc-subsection-title">VoiceProfile</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">VoiceProfile</span> {
+  <span class="dc-dim">id</span>: string;
+  <span class="dc-dim">name</span>: string | <span class="dc-kw">null</span>;
+  <span class="dc-dim">traits</span>: {
+    <span class="dc-dim">tone</span>: string[];
+    <span class="dc-dim">pacing</span>: string[];
+    <span class="dc-dim">storytelling</span>: string[];
+    <span class="dc-dim">vocabulary</span>: string[];
+    <span class="dc-dim">sentenceStructure</span>: string[];
+    <span class="dc-dim">transitions</span>: string[];
+    <span class="dc-dim">humor</span>: string[];
+    <span class="dc-dim">readerEngagement</span>: string[];
+  };
+  <span class="dc-dim">summary</span>: string | <span class="dc-kw">null</span>;
+  <span class="dc-dim">createdAt</span>: Date;
+}</code></pre>
+
+					<h3 class="doc-subsection-title">KnowledgeProfile</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">KnowledgeProfile</span> {
+  <span class="dc-dim">id</span>: string;
+  <span class="dc-dim">domains</span>: string[];
+  <span class="dc-dim">topics</span>: string[];
+  <span class="dc-dim">summary</span>: string | <span class="dc-kw">null</span>;
+  <span class="dc-dim">createdAt</span>: Date;
+}</code></pre>
+
+					<h3 class="doc-subsection-title">PublicationProfile</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">PublicationProfile</span> {
+  <span class="dc-dim">id</span>: string;
+  <span class="dc-dim">themes</span>: string[];
+  <span class="dc-dim">series</span>: { name: string; articles: ArticleReference[] }[] | <span class="dc-kw">null</span>;
+  <span class="dc-dim">summary</span>: string | <span class="dc-kw">null</span>;
+  <span class="dc-dim">createdAt</span>: Date;
+}</code></pre>
+
+					<h3 class="doc-subsection-title">ResearchNote</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">ResearchNote</span> {
+  <span class="dc-dim">id</span>: string;
+  <span class="dc-dim">topic</span>: string;
+  <span class="dc-dim">content</span>: string;
+  <span class="dc-dim">citations</span>: {
+    <span class="dc-dim">sourceId</span>: string;
+    <span class="dc-dim">sourcePath</span>: string;
+    <span class="dc-dim">excerpt</span>: string;
+    <span class="dc-dim">relevanceScore</span>: number;
+  }[];
+  <span class="dc-dim">createdAt</span>: Date;
+}</code></pre>
+
+					<h3 class="doc-subsection-title">Article</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">Article</span> {
+  <span class="dc-dim">id</span>: string;
+  <span class="dc-dim">title</span>: string;
+  <span class="dc-dim">content</span>: string;       <span class="dc-comment">// markdown body</span>
+  <span class="dc-dim">voiceProfileId</span>: string; <span class="dc-comment">// which voice was used</span>
+  <span class="dc-dim">researchId</span>: string | <span class="dc-kw">null</span>;
+  <span class="dc-dim">wordCount</span>: number;
+  <span class="dc-dim">status</span>: <span class="dc-str">"draft"</span> | <span class="dc-str">"published"</span> | <span class="dc-str">"archived"</span>;
+  <span class="dc-dim">createdAt</span>: Date;
+  <span class="dc-dim">updatedAt</span>: Date;
+}</code></pre>
+
+					<h3 class="doc-subsection-title">Series</h3>
+					<pre
+						class="doc-code-block"><code><span class="dc-kw">interface</span> <span class="dc-type">Series</span> {
+  <span class="dc-dim">id</span>: string;
+  <span class="dc-dim">name</span>: string;
+  <span class="dc-dim">description</span>: string | <span class="dc-kw">null</span>;
+  <span class="dc-dim">articleIds</span>: string[];   <span class="dc-comment">// ordered list of article IDs</span>
+  <span class="dc-dim">createdAt</span>: Date;
+  <span class="dc-dim">updatedAt</span>: Date;
+}</code></pre>
+				</section>
+
+				<div class="section-rule"></div>
+
+				<section id="system-details" class="reveal">
+					<h2 class="doc-section-title">System Details</h2>
+					<ul class="doc-list">
+						<li>
+							<strong>Database</strong> SQLite via <code>better-sqlite3</code>, with
+							<code>sqlite-vec</code> for vector similarity search
+						</li>
+						<li>
+							<strong>AI SDK</strong> OpenAI SDK (openai compatible providers), Anthropic SDK
+							(Claude)
+						</li>
+						<li><strong>Config validation</strong> Zod schema</li>
+						<li><strong>Markdown to HTML</strong> <code>marked</code> library</li>
+						<li><strong>Logging</strong> Pino structured logger</li>
+						<li><strong>CLI framework</strong> Commander.js</li>
+						<li><strong>Token management</strong> tiktoken for embedding token counting</li>
+						<li><strong>Export</strong> Markdown frontmatter, styled HTML, plain text, RSS 2.0</li>
+					</ul>
+				</section>
+
+				<footer>
+					<div class="footer-row">
+						<div>
+							<div class="footer-logo">Thoth</div>
+							<div class="footer-sub">Built for engineers who write.</div>
+						</div>
+						<ul class="footer-links">
+							<li><a href="docs.html">Docs</a></li>
+							<li><a href="#">Changelog</a></li>
+						</ul>
+					</div>
+					<div class="footer-built">
+						Built by
+						<a href="https://portfolio.serticode.com" target="_blank" rel="noopener">Serticode Inc</a>
+					</div>
+				</footer>
+			</main>
+		</div>
+
+		<script src="js/cursor.js"></script>
+		<script src="js/scrollReveal.js"></script>
+		<script src="js/docs.js"></script>
+		<script src="js/mobileDrawer.js"></script>
+	</body>
+</html>
