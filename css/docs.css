@@ -1,7 +1,7 @@
 .docs-layout {
 	display: flex;
-	margin-top: 64px;
-	min-height: calc(100dvh - 64px);
+	margin-top: 72px;
+	min-height: calc(100dvh - 72px);
 }
 
 .docs-sidebar {
@@ -441,7 +441,7 @@ footer {
 
 	.docs-sidebar {
 		position: sticky;
-		top: 64px;
+		top: 0;
 		width: 100%;
 		height: auto;
 		bottom: auto;
