@@ -133,15 +133,8 @@
   transform: translateY(calc(-100% - 24px));
 }
 
-.mobile-trigger--hidden {
-  transform: translateY(calc(-100% - 24px));
-}
-
 /* ── Mobile trigger ── */
 .mobile-trigger {
-  position: fixed;
-  top: 22px;
-  right: calc(10vw + 52px);
   width: 44px;
   height: 44px;
   z-index: 101;
@@ -350,8 +343,6 @@
   }
 
   .mobile-trigger {
-    top: 18px;
-    right: 72px;
     width: 36px;
     height: 36px;
   }

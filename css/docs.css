@@ -437,6 +437,7 @@ footer {
 @media (max-width: 900px) {
 	.docs-layout {
 		flex-direction: column;
+		margin-top: 80px;
 	}
 
 	.docs-sidebar {
