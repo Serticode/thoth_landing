@@ -39,12 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const current = window.scrollY;
     if (current < hideThreshold) {
       nav?.classList.remove("nav--hidden");
+      trigger?.classList.remove("mobile-trigger--hidden");
       return;
     }
     if (current > lastScroll + 8) {
       nav?.classList.add("nav--hidden");
+      trigger?.classList.add("mobile-trigger--hidden");
     } else if (current < lastScroll - 8) {
       nav?.classList.remove("nav--hidden");
+      trigger?.classList.remove("mobile-trigger--hidden");
     }
     lastScroll = current;
   }, { passive: true });

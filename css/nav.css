@@ -133,6 +133,10 @@
   transform: translateY(calc(-100% - 24px));
 }
 
+.mobile-trigger--hidden {
+  transform: translateY(calc(-100% - 24px));
+}
+
 /* ── Mobile trigger ── */
 .mobile-trigger {
   position: fixed;
