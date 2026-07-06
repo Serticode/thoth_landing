@@ -101,7 +101,7 @@
 					</p>
 					<div class="doc-install">
 						<span class="doc-install-prompt">$</span>
-						<span class="doc-install-cmd">npx thoth &lt;command&gt; [options]</span>
+						<span class="doc-install-cmd">npx @serticode/thoth &lt;command&gt; [options]</span>
 					</div>
 				</section>
 				<div class="section-rule"></div>
@@ -113,9 +113,9 @@
 						<code>better-sqlite3</code> and <code>sqlite-vec</code> native modules). On macOS, Xcode Command
 						Line Tools (<code>xcode-select --install</code>) is sufficient.
 					</p>
-					<pre class="doc-code-block"><code>npm install -g thoth</code></pre>
+					<pre class="doc-code-block"><code>npm install -g @serticode/thoth</code></pre>
 					<p class="doc-section-desc">Or run without installing:</p>
-					<pre class="doc-code-block"><code>npx thoth init</code></pre>
+					<pre class="doc-code-block"><code>npx @serticode/thoth init</code></pre>
 					<h3 class="doc-subsection-title">AI Provider Setup (optional)</h3>
 					<p class="doc-section-desc">
 						Set at least one API key environment variable to use cloud AI. Add these to your shell profile
@@ -910,7 +910,7 @@ thoth generate_article --research &lt;id&gt;</code></pre>
 						<h3 class="doc-cmd-title"><span class="doc-cmd-hash">#</span> thoth export_article</h3>
 						<p class="doc-cmd-desc">Export an article to a file.</p>
 						<pre
-							class="doc-code-block"><code>thoth export_article &lt;id&gt; [--format &lt;format&gt;] [--output &lt;dir&gt;]</code></pre>
+							class="doc-code-block"><code>thoth export_article &lt;id&gt; [--format &lt;format&gt;] [--output &lt;dir&gt;] [--stdout]</code></pre>
 						<div class="doc-table-wrap">
 							<table class="doc-table">
 								<thead>
@@ -939,6 +939,12 @@ thoth generate_article --research &lt;id&gt;</code></pre>
 										<td>No</td>
 										<td>Output directory</td>
 										<td><code>~/Documents/Thoth/singles</code></td>
+									</tr>
+									<tr>
+										<td><code>--stdout</code></td>
+										<td>No</td>
+										<td>Print to stdout instead of writing a file</td>
+										<td><code>false</code></td>
 									</tr>
 								</tbody>
 							</table>
